@@ -1,5 +1,4 @@
 import './sass/main.scss';
-// import cardTemplate from '../templates/card-template.hbs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -23,8 +22,6 @@ let lightbox = new SimpleLightbox('.photo-card a', {
 let currentPage = 1;
 let currentHits = 0;
 let searchQuery = '';
-
-refs.searchForm.addEventListener('submit', onSubmitSearchForm);
 
 async function onSubmitSearchForm(e) {
     e.preventDefault();
@@ -71,9 +68,9 @@ async function onSubmitSearchForm(e) {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
-refs.loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
+refs.searchForm.addEventListener('submit', onSubmitSearchForm);
 
 async function onClickLoadMoreBtn() {
     currentPage += 1;
@@ -86,4 +83,6 @@ async function onClickLoadMoreBtn() {
         refs.loadMoreBtn.classList.add('is-hidden');
         refs.endCollectionText.classList.remove('is-hidden');
     }
-}
+};
+
+refs.loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
