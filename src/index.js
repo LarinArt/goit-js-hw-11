@@ -11,7 +11,7 @@ import { refs } from './js/constants';
 function renderCardImage(arr) {
     const markup = arr.map(item => cardTpl(item)).join('');
     refs.gallery.insertAdjacentHTML('beforeend', markup);
-}
+};
 
 let lightbox = new SimpleLightbox('.photo-card a', {
     captions: true,
@@ -30,7 +30,7 @@ async function onSubmitSearchForm(e) {
 
     if (searchQuery === '') {
         return;
-    }
+    };
 
     const response = await fetchImages(searchQuery, currentPage);
     currentHits = response.hits.length;
@@ -39,7 +39,7 @@ async function onSubmitSearchForm(e) {
         refs.loadMoreBtn.classList.remove('is-hidden');
     } else {
         refs.loadMoreBtn.classList.add('is-hidden');
-    }
+    };
 
     try {
         if (response.totalHits > 0) {
@@ -57,17 +57,17 @@ async function onSubmitSearchForm(e) {
                 top: cardHeight * -100,
                 behavior: 'smooth',
             });
-        }
+        };
 
         if (response.totalHits === 0) {
             refs.gallery.innerHTML = '';
             Notify.failure('Sorry, there are no images matching your search query. Please try again.');
             refs.loadMoreBtn.classList.add('is-hidden');
             refs.endCollectionText.classList.add('is-hidden');
-        }
+        };
     } catch (error) {
         console.log(error);
-    }
+    };
 };
 
 refs.searchForm.addEventListener('submit', onSubmitSearchForm);
