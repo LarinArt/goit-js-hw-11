@@ -52,11 +52,6 @@ async function onSubmitSearchForm(e) {
             const { height: cardHeight } = document
                 .querySelector('.gallery')
                 .firstElementChild.getBoundingClientRect();
-
-            window.scrollBy({
-                top: cardHeight * -100,
-                behavior: 'smooth',
-            });
         };
 
         if (response.totalHits === 0) {
