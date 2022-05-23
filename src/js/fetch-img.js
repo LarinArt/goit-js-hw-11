@@ -22,7 +22,7 @@ export const fetchImgParams = {
 
 export const searchImg = async (params) => {
     try {
-        const res = await customAxios.get(`${URL}?key=${API_KEY}`, { params });
+        const res = await customAxios.get('', { params });
         if (res.data.hits === 0){
             return;
         }
@@ -31,3 +31,4 @@ export const searchImg = async (params) => {
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
 };
+export default { fetchImgParams, searchImg };

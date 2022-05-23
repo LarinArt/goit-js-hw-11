@@ -13,40 +13,47 @@ function renderCardImage(arr) {
     refs.gallery.insertAdjacentHTML('beforeend', cardTpl[arr]);
 };
 
+async function generateMarkup() {
+    try {
+        const result = await API.searchImg();
+        const images = result.data.hits;
+        generateImagesMarkup(images);
+
+    } catch (error) {
+        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+    };
+
+};
+
 function generateImagesMarkup(images) {
-    refs.gallery.insertAdjacentHTML('beforeend', cardTpl[arr]);
+    refs.gallery.insertAdjacentHTML('beforeend', cardTpl(images));
 
     let lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
         captionsData: 'alt',
         captionDelay: 250,
     });
+    lightbox.refresh();
 };
 
 
 function onSubmitSearchForm(e) {
-    e.preventDefault();
     API.fetchImgParams.page = 1;
     API.fetchImgParams.q = e.target.value;
 };
 
 function totalHits(hits) {
-    if(hits){
-        Notiflix.Notify.failure(`Hooray! We found ${hits} images.`);
+    if(hits) {
+        Notiflix.Notify.success(`Hooray! We found ${hits} images.`);
     }
 };
 
 function onFormSubmit(e) {
     refs.gallery.innerHTML = "";
     e.preventDefault();
-    renderCardImage();
+    generateMarkup();
     API.searchImg().then(({ data }) => totalHits(data.hits));
 };
-
-function loadMore() {
-    API.fetchImgParams.page += 1;
-    renderCardImage();
-}
 
 function onObserver(entries) {
     entries.forEach(entry => {
@@ -55,6 +62,11 @@ function onObserver(entries) {
             refs.loadMoreBtn.classList.remove('is-hidden');
         }
     })
+};
+
+function loadMore() {
+    API.fetchImgParams.page += 1;
+    generateMarkup();
 }
 
 const options = {
