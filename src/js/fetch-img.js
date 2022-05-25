@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
-// import axios from 'axios';
-const axios = require('axios').default;
+import axios from 'axios';
+
 
 const URL = 'https://pixabay.com/api/';
 const API_KEY = '27450205-8765e518dc84e5655ddf2d669';
@@ -24,10 +24,7 @@ export const fetchImgParams = {
 export const searchImg = async (params) => {
     try {
         const res = await customAxios.get('', { params });
-        if (res.data.hits === 0){
-            return;
-        }
-        return res;
+        return res.json();
     } catch (error) {
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }

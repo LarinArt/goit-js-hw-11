@@ -5,4 +5,3 @@ export const refs = {
     endCollectionText: document.querySelector('.end-collection-text'),
     observe: document.querySelector('#observe')
 };
-
