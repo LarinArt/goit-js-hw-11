@@ -16,8 +16,9 @@ export const params = {
 export async function searchImg() {
     try {
         const res = await axios.get(URL, { params });
-        return res.json();
+        return res;
     } catch (error) {
+        console.log("object", error);
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
 };
