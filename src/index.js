@@ -17,7 +17,7 @@ async function generateImagesMarkup() {
     console.log(result);
     const images = result?.data?.hits;
     renderCardImage(images);
-    if (images <= 40 && images !== 0) {
+    if (images <= 40 && result?.data?.totalHits !== 0) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
     };
 

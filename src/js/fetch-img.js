@@ -1,4 +1,3 @@
-import Notiflix from 'notiflix';
 import axios from 'axios';
 
 const URL = 'https://pixabay.com/api/';
