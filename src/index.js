@@ -8,13 +8,16 @@ import cardTpl from './templates/templates.hbs';
 import { refs } from './js/refs';
 import Notiflix from 'notiflix';
 
+function renderCardImage(arr) {
+    refs.gallery.insertAdjacentHTML('beforeend', cardTpl(arr));
+}
 
 async function generateImagesMarkup() {
     const result = await searchImg();
     console.log(result);
     const images = result?.data?.hits;
     renderCardImage(images);
-    if (images <= 40) {
+    if (images <= 40 && images !== 0) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
     };
 
@@ -69,7 +72,5 @@ const observer = new IntersectionObserver(onObserver, options);
 observer.observe(refs.observe);
 
 refs.searchForm.addEventListener('submit', onFormSubmit);
-function renderCardImage(arr) {
-    refs.gallery.insertAdjacentHTML('beforeend', cardTpl(arr));
-}
+
 
