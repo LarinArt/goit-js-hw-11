@@ -75,8 +75,8 @@ p {
 
     padding: 25px 0 25px 0;
 
-    background: #34e89e;
-    background: linear-gradient(to right, #0f3443, #34e89e);
+    // background: #34e89e;
+    background: linear-gradient( rgb(0, 87, 184), rgb(255, 215, 0));
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -121,8 +121,8 @@ p {
 
     &:hover,
     &:focus {
-        background-color: #0f3443;
-        color: #ffffff;
+        background-color: rgb(0, 87, 184);
+        color: rgb(255, 215, 0);
     }
 
     @media screen and (min-width: $mobile) {

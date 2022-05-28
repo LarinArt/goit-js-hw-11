@@ -14,6 +14,9 @@ async function generateImagesMarkup() {
     console.log(result);
     const images = result?.data?.hits;
     renderCardImage(images);
+    if (images <= 40) {
+        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
+    };
 
     let lightbox = new SimpleLightbox('.gallery a', {
         captionDelay: 250,
@@ -34,8 +37,15 @@ async function onFormSubmit(e) {
     refs.gallery.innerHTML = '';
     e.preventDefault();
     generateImagesMarkup();
-    searchImg().then(({ data }) => totalHits(data.total));
+    searchImg().then(({ data } = {}) => {
+        if (data?.total === 0) {
+            Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+            return;
+        }
+        totalHits(data?.total)
+    })
 }
+
 
 function loadMore() {
     params.page += 1;
@@ -62,3 +72,4 @@ refs.searchForm.addEventListener('submit', onFormSubmit);
 function renderCardImage(arr) {
     refs.gallery.insertAdjacentHTML('beforeend', cardTpl(arr));
 }
+

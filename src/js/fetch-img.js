@@ -19,17 +19,5 @@ export async function searchImg() {
         return res;
     } catch (error) {
         console.log("object", error);
-        Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
 };
-
-// export const searchImg = async (params) => {
-//     try {
-//         const res = await customAxios.get('', { params });
-//         return res.json();
-//     } catch (error) {
-//         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-//     }
-// };
-
-
