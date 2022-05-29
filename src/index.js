@@ -12,14 +12,9 @@ function renderCardImage(arr) {
     refs.gallery.insertAdjacentHTML('beforeend', cardTpl(arr));
 }
 
-function simpleLightbox() {
-    let lightbox = new SimpleLightbox('.gallery a', {
-        captionDelay: 250,
-    });
-    
-    lightbox.refresh();
-};
-
+let lightbox = new SimpleLightbox('.gallery a', {
+    captionDelay: 250,
+});
 
 async function generateImagesMarkup() {
     const result = await searchImg();
@@ -29,8 +24,7 @@ async function generateImagesMarkup() {
     if (images <= 40 && result?.data?.totalHits !== 0) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
     };
-
-    simpleLightbox();
+    lightbox.refresh();
 }
 
 function totalHits(total) {
